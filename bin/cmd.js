@@ -7,7 +7,7 @@ var optimist = require('optimist');
 var colors = require('colors');
 
 // Search for installed dalek by using node's built-in require() logic.
-var child = spawn(process.execPath, ['-p', '-e', 'require.resolve("dalek")']);
+var child = spawn(process.execPath, ['-p', '-e', 'require.resolve("dalekjs")']);
 var dalekpath = '';
 child.stdout.on('data', function (data) {
     dalekpath += data;
