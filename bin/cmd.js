@@ -41,7 +41,6 @@ child.on('exit', function(code) {
         })
         .option('logLevel', {
             alias: 'l',
-            default: 1,
             type : 'number',
             desc : 'Log level, controls the amount of information outputted to the console'
         })
