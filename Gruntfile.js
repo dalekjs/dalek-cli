@@ -8,10 +8,10 @@ module.exports = function(grunt) {
 
     // define a src set of files for other tasks
     src: {
-      lint: ['Gruntfile.js', 'bin/cmd.js', 'test/*.js'],
-      complexity: ['bin/cmd.js', 'test/*.js'],
+      lint: ['Gruntfile.js', 'index.js', 'test/*.js'],
+      complexity: ['index.js', 'test/*.js'],
       test: ['test/*.js'],
-      src: ['bin/cmd.js']
+      src: ['index.js']
     },
 
     // clean coverage helper file
@@ -111,20 +111,20 @@ module.exports = function(grunt) {
     // generate dirs for docs & reports
     ['coverage', 'report', 'report/coverage',
     'report/complexity', 'report/complexity/files',
-    'report/complexity/files/bin_cmd_js',
-    'report/complexity/files/test_bin_cmd_TEST_js'].forEach(function (path) {
+    'report/complexity/files/index_js',
+    'report/complexity/files/test_index_TEST_js'].forEach(function (path) {
       fs.mkdirSync(__dirname + '/' + path);
     });
 
     // store some dummy reports, so that grunt plato doesnt complain
     ['report.history.json',
-    'files/test_bin_cmd_TEST_js/report.history.json',
-    'files/bin_cmd_js/report.history.json'].forEach(function (file) {
+    'files/test_index_TEST_js/report.history.json',
+    'files/index_js/report.history.json'].forEach(function (file) {
       fs.writeFileSync(__dirname + '/report/complexity/' + file, '{}');
     });
 
     // generate code coverage helper file
-    var coverageHelper = 'require("blanket")({pattern: require("fs").realpathSync(__dirname + "/../bin/cmd.js")});';
+    var coverageHelper = 'require("blanket")({pattern: require("fs").realpathSync(__dirname + "/index.js")});';
     fs.writeFileSync(__dirname + '/coverage/blanket.js', coverageHelper);
   });
 
