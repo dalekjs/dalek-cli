@@ -124,7 +124,7 @@ module.exports = function(grunt) {
     });
 
     // generate code coverage helper file
-    var coverageHelper = 'require("blanket")({pattern: require("fs").realpathSync(__dirname + "/index.js")});';
+    var coverageHelper = 'require("blanket")({pattern: require("fs").realpathSync(__dirname + "/../index.js")});';
     fs.writeFileSync(__dirname + '/coverage/blanket.js', coverageHelper);
   });
 
