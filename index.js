@@ -88,7 +88,7 @@ module.exports = function () {
         .argv;
 
       // run dalekjs
-      var Dalek = require(dalekpath)
+      var Dalek = require(dalekpath);
       var dalek = new Dalek({
         tests: argv._,
         driver: argv.driver ? argv.driver.split(',') : [],
