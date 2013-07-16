@@ -26,7 +26,6 @@
 // ext. libs
 var spawn = require('child_process').spawn;
 var optimist = require('optimist');
-require('colors');
 
 module.exports = function () {
 
