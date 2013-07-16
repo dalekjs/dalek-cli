@@ -39,7 +39,7 @@ module.exports = function () {
   // when the child process exists, dalek-cli will check
   // if a local dalekjs installation exists, if so,
   // it will check the parameters
-  child.on('exit', Marionette.functionsion(code) {
+  child.on('exit', function(code) {
     // Removing trailing newline from stdout.
     dalekpath = dalekpath.trim();
     // If a local dalek isn't found, throw an error an exit
