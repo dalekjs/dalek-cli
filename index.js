@@ -48,6 +48,10 @@ module.exports = function () {
       var argv = optimist
         .usage('Usage: dalek [test files] {OPTIONS}')
         .wrap(80)
+        .option('version', {
+          alias: 'v',
+          desc : 'Shows the version of the dalek-cli & local dalek installation'
+        })
         .option('reporter', {
           alias: 'r',
           type : 'string',
@@ -65,8 +69,8 @@ module.exports = function () {
         })
         .option('logLevel', {
           alias: 'l',
-          type : 'number',
-          desc : 'Log level, controls the amount of information outputted to the console'
+          type : 'string',
+          desc : 'Log level, controls the amount of information outputted to the console (0 to 5)'
         })
         .option('no-colors', {
           type : 'boolean',
@@ -81,6 +85,21 @@ module.exports = function () {
           desc : 'Show this message'
         })
         .check(function (argv) {
+          // output some version info
+          if (argv.version) {
+            // load the versions
+            var fs = require('fs');
+            var localVersion = JSON.parse(fs.readFileSync(dalekpath.replace('index.js', 'package.json'))).version;
+            var cliVersion = JSON.parse(fs.readFileSync(__dirname + '/package.json')).version;
+
+            console.log('DalekJS CLI Tools Version:', cliVersion);
+            console.log('DalekJS local install:', localVersion);
+            console.log('Brought to you with love by:', 'Sebastian Golasch (@asciidisco) 2013');
+            console.log('');
+            throw '';
+          }
+
+          // show help
           if (argv.help) {
             throw '';
           }
@@ -100,9 +119,17 @@ module.exports = function () {
       dalek.run();
 
     } else {
-      console.log('No local dalekjs installation found'.red);
-      console.log('Please follow the instruction here: http://dalekjs.com/docs/usage'.yellow);
-      process.exit(127);
+      // check if the version flag is given, then spit out additional version info
+      if (process.argv[2] && (process.argv[2] === '-v' || process.argv[2] === '--version')) {
+        var fs = require('fs');
+        var cliVersion = JSON.parse(fs.readFileSync(__dirname + '/package.json')).version;
+        console.log('DalekJS CLI Tools Version:', cliVersion);
+        console.log('Brought to you with love by:', 'Sebastian Golasch (@asciidisco) 2013');
+      } else {
+        console.log('No local DalekJS installation found');
+        console.log('Please follow the instruction here: http://dalekjs.com/pages/getStarted.html');
+        process.exit(127);
+      }
     }
   });
 };
