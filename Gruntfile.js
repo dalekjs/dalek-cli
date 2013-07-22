@@ -165,7 +165,7 @@ module.exports = function(grunt) {
     });
 
     // generate code coverage helper file
-    var coverageHelper = 'require("blanket")({pattern: [require("fs").realpathSync(__dirname + "/../index.js"), require("fs").realpathSync(__dirname + "/../lib/")]});';
+    var coverageHelper = 'require("blanket")({pattern: [require("fs").realpathSync(__dirname + "/../index.js")]});';
     if (!fs.existsSync(__dirname + '/coverage/blanket.js')) {
       fs.writeFileSync(__dirname + '/coverage/blanket.js', coverageHelper);
     }
