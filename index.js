@@ -27,6 +27,13 @@
 var spawn = require('child_process').spawn;
 var optimist = require('optimist');
 
+/**
+ * Dalek Command Line Tools
+ *
+ * @part CLI
+ * @api
+ */
+
 module.exports = function () {
 
   // Search for installed dalek by using node's built-in require() logic.

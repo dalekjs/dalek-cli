@@ -1,13 +1,17 @@
-dalekjs
+dalek-cli
 ======================
 
-> DalekJS base framework
+> Dalek CLI tools
 
 [![Build Status](https://travis-ci.org/dalekjs/dalek-cli.png)](https://travis-ci.org/dalekjs/dalek-cli)
 [![Build Status](https://drone.io/github.com/dalekjs/dalek-cli/status.png)](https://drone.io/github.com/dalekjs/dalek-cli/latest)
 [![Dependency Status](https://david-dm.org/dalekjs/dalek-cli.png)](https://david-dm.org/dalekjs/dalek-cli)
 [![devDependency Status](https://david-dm.org/dalekjs/dalek-cli/dev-status.png)](https://david-dm.org/dalekjs/dalek-cli#info=devDependencies)
 [![NPM version](https://badge.fury.io/js/dalek-cli.png)](http://badge.fury.io/js/dalek-cli)
+[![Coverage](http://dalekjs.com/package/dalek-cli/master/coverage/coverage.png)](http://dalekjs.com/package/dalek-cli/master/coverage/index.html)
+[![unstable](https://rawgithub.com/hughsk/stability-badges/master/dist/unstable.svg)](http://github.com/hughsk/stability-badges)
+
+[![NPM](https://nodei.co/npm/dalek-driver-native.png)](https://nodei.co/npm/dalek-cli/)
 
 ## Ressources
 
@@ -15,7 +19,7 @@ dalekjs
 [Code coverage](http://dalekjs.com/package/dalek-cli/master/coverage/index.html) -
 [Code complexity](http://dalekjs.com/package/dalek-cli/master/complexity/index.html) -
 [Contributing](https://github.com/dalekjs/dalek-cli/blob/master/CONTRIBUTING.md) -
-[User Docs](http://dalekjs.com/docs/master/index.html) -
+[User Docs](http://dalekjs.com/docs/cli.html) -
 [Homepage](http://dalekjs.com) -
 [Twitter](http://twitter.com/dalekjs)
 
@@ -42,7 +46,7 @@ how to override that feature, browser specific problems and so on.
 
 Questions on StackOverflow often turn in to blog posts or issues.
 
-### [Github Issues](//github.com/dalekjs/dalek-internal-assertions/issues)
+### [Github Issues](//github.com/dalekjs/dalek-cli/issues)
 
 Report issues with DalekJS, submit pull requests to fix problems, or to
 create summarized and documented feature requests (preferably with pull
