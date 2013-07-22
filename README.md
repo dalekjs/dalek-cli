@@ -11,7 +11,7 @@ dalek-cli
 [![Coverage](http://dalekjs.com/package/dalek-cli/master/coverage/coverage.png)](http://dalekjs.com/package/dalek-cli/master/coverage/index.html)
 [![unstable](https://rawgithub.com/hughsk/stability-badges/master/dist/unstable.svg)](http://github.com/hughsk/stability-badges)
 
-[![NPM](https://nodei.co/npm/dalek-driver-native.png)](https://nodei.co/npm/dalek-cli/)
+[![NPM](https://nodei.co/npm/dalek-cli.png)](https://nodei.co/npm/dalek-cli/)
 
 ## Ressources
 
