@@ -15,7 +15,8 @@ dalek-cli
 
 ## Ressources
 
-[API Documentation](http://dalekjs.com/package/dalek-cli/master/api/index.html) -
+[API Docs](http://dalekjs.com/package/dalek-cli/master/api/index.html) -
+[Trello](https://trello.com/b/QhNY6vGU/dalek-cli) -
 [Code coverage](http://dalekjs.com/package/dalek-cli/master/coverage/index.html) -
 [Code complexity](http://dalekjs.com/package/dalek-cli/master/complexity/index.html) -
 [Contributing](https://github.com/dalekjs/dalek-cli/blob/master/CONTRIBUTING.md) -
