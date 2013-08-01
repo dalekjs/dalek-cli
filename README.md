@@ -1,5 +1,5 @@
 dalek-cli
-======================
+=========
 
 > Dalek CLI tools
 
@@ -12,6 +12,7 @@ dalek-cli
 [![unstable](https://rawgithub.com/hughsk/stability-badges/master/dist/unstable.svg)](http://github.com/hughsk/stability-badges)
 
 [![NPM](https://nodei.co/npm/dalek-cli.png)](https://nodei.co/npm/dalek-cli/)
+[![NPM](https://nodei.co/npm-dl/dalek-cli.png)](https://nodei.co/npm/dalek-cli/)
 
 ## Ressources
 
@@ -23,6 +24,24 @@ dalek-cli
 [User Docs](http://dalekjs.com/docs/cli.html) -
 [Homepage](http://dalekjs.com) -
 [Twitter](http://twitter.com/dalekjs)
+
+## Docs
+
+The command line interface is your interface to the world of DalekJS.
+This is the way to run your tests.
+There might be a web interface to Dalek in the future, but as long as there is not, you have to deal with this;
+But hey, this isn't difficult & I know you can do it!
+
+Available options:
+
+  --version, -v   Shows the version of the dalek-cli & local dalek installation
+  --reporter, -r  Reporter(s) you would like to invoke
+  --driver, -d    Driver(s) you would like to invoke
+  --browser, -b   Browser(s) you would like to invoke
+  --logLevel, -l  Log level, controls the amount of information outputted to the console (0 to 5)
+  --no-colors     Disable colorized output in the console
+  --no-symbols    Disable UTF-8 symbols in the console
+  --help, -h      Displays the cli help
 
 ## Help Is Just A Click Away
 
@@ -57,7 +76,7 @@ requests that implement the feature).
 other, better channels for seeking assistance, like StackOverflow and the
 Google Groups mailing list.
 
-![DalekJS](https://raw.github.com/dalekjs/dalekjs.com/master/img/logo.jpg)
+![DalekJS](https://raw.github.com/dalekjs/dalekjs.com/master/img/logo.png)
 
 ## Legal FooBar (MIT License)
 
