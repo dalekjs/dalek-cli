@@ -34,14 +34,21 @@ But hey, this isn't difficult & I know you can do it!
 
 Available options:
 
-  --version, -v   Shows the version of the dalek-cli & local dalek installation
-  --reporter, -r  Reporter(s) you would like to invoke
-  --driver, -d    Driver(s) you would like to invoke
-  --browser, -b   Browser(s) you would like to invoke
-  --logLevel, -l  Log level, controls the amount of information outputted to the console (0 to 5)
-  --no-colors     Disable colorized output in the console
-  --no-symbols    Disable UTF-8 symbols in the console
-  --help, -h      Displays the cli help
+  > --version, -v   Shows the version of the dalek-cli & local dalek installation
+
+  > --reporter, -r  Reporter(s) you would like to invoke
+
+  > --driver, -d    Driver(s) you would like to invoke
+
+  > --browser, -b   Browser(s) you would like to invoke
+
+  > --logLevel, -l  Log level, controls the amount of information outputted to the console (0 to 5)
+
+  > --no-colors     Disable colorized output in the console
+
+  > --no-symbols    Disable UTF-8 symbols in the console
+
+  > --help, -h      Displays the cli help
 
 ## Help Is Just A Click Away
 
