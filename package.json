@@ -22,6 +22,7 @@
     "grunt-plato": "~0.2.1",
     "grunt-documantix": "~0.0.3",
     "grunt-include-replace": "~1.1.0",
+    "grunt-bump": "~0.0.11",
     "blanket": "~1.1.5",
     "chai": "~1.7.2"
   },

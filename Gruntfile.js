@@ -121,6 +121,20 @@ module.exports = function(grunt) {
       }
     },
 
+    // up version, tag & commit
+    bump: {
+      options: {
+        files: ['package.json'],
+        commit: true,
+        commitMessage: 'Release v%VERSION%',
+        commitFiles: ['package.json'],
+        createTag: true,
+        tagName: '%VERSION%',
+        tagMessage: '%VERSION%',
+        push: true
+      }
+    },
+
     // compress artifacts
     compress: {
       main: {
@@ -235,6 +249,106 @@ module.exports = function(grunt) {
     }
   });
 
+  // archives the docs if a new version appears
+  grunt.registerTask('archive', function () {
+    var done = this.async();
+    grunt.util.spawn({cmd: 'git', args: ['describe', '--abbrev=0', '--tags']}, function (error, result) {
+      var lastTag = result.toString();
+      if (grunt.file.isFile('_raw/docs/' + lastTag + '/cli.html')) {
+        grunt.log.ok('Nothing to archive');
+        done();
+        return true;
+      }
+
+      if (!grunt.file.isDir('_raw/docs/' + lastTag)) {
+        grunt.file.mkdir('_raw/docs/' + lastTag);
+      }
+
+      grunt.file.copy('report/docs/cli.html', '_raw/docs/' + lastTag + '/cli.html');
+      grunt.log.ok('Archived document with version: ' + lastTag);
+      done();
+    });
+  });
+
+  // releases a new canary build
+  grunt.registerTask('release-canary', function () {
+    var done = this.async();
+    var pkg = grunt.config.get('pkg');
+    var canaryPkg = grunt.util._.clone(pkg);
+
+    Object.keys(canaryPkg.dependencies).forEach(function (pack) {
+      if (pack.search('dalek') !== -1) {
+        delete canaryPkg.dependencies[pack];
+        canaryPkg.dependencies[pack + '-canary'] = 'latest';
+      }
+    });
+
+    canaryPkg.name = canaryPkg.name + '-canary';
+    canaryPkg.version = canaryPkg.version + '-' + grunt.template.today('yyyy-mm-dd-HH-MM-ss');
+
+    grunt.file.write('package.json', JSON.stringify(canaryPkg, true, 2));
+
+    var npm = require('npm');
+    npm.load({}, function() {
+      npm.registry.adduser(process.env.npmuser, process.env.npmpass, process.env.npmmail, function(err) {
+        if (err) {
+          grunt.log.error(err);
+          grunt.file.write('package.json', JSON.stringify(pkg, true, 2));
+          done(false);
+        } else {
+          npm.config.set('email', process.env.npmmail, 'user');
+          npm.commands.publish([], function(err) {
+            grunt.file.write('package.json', JSON.stringify(pkg, true, 2));
+            grunt.log.ok('Published canary build to registry');
+            done(!err);
+          });
+        }
+      });
+    });
+  });
+
+  // release a new version
+  grunt.registerTask('release-package', function () {
+    var done = this.async();
+    var http = require('http');
+    var pkg = grunt.config.get('pkg');
+    var body = '';
+
+    http.get('http://registry.npmjs.org/' + pkg.name, function(res) {
+      res.on('data', function (data) {
+        body += data;
+      });
+
+      res.on('end', function () {
+        var versions = grunt.util._.pluck(JSON.parse(body).versions, 'version');
+        var currVersion =  parseInt(pkg.version.replace(/\./gi, ''), 10);
+        var availableVersions = versions.map(function (version) {
+          return parseInt(version.replace(/\./gi, ''), 10);
+        });
+
+        if (!grunt.util._.contains(availableVersions, currVersion)) {
+          var npm = require('npm');
+          npm.load({}, function() {
+            npm.registry.adduser(process.env.npmuser, process.env.npmpass, process.env.npmmail, function(err) {
+              if (err) {
+                grunt.log.error(err);
+                done(false);
+              } else {
+                npm.config.set('email', process.env.npmmail, 'user');
+                npm.commands.publish([], function(err) {
+                  grunt.log.ok('Released new version: ', pkg.version);
+                  done(!err);
+                });
+              }
+            });
+          });
+        } else {
+          done();
+        }
+      });
+    });
+  });
+
   // load 3rd party tasks
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-clean');
@@ -244,6 +358,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-complexity');
   grunt.loadNpmTasks('grunt-documantix');
   grunt.loadNpmTasks('grunt-plato');
+  grunt.loadNpmTasks('grunt-bump');
   grunt.loadNpmTasks('grunt-include-replace');
 
   // define runner tasks
