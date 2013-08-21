@@ -46,9 +46,9 @@ var optimist = require('optimist');
  *
  * > --logLevel, -l  Log level, controls the amount of information outputted to the console (0 to 5)
  *
- * > --no-colors     Disable colorized output in the console
+ * > --nocolors     Disable colorized output in the console
  *
- * > --no-symbols    Disable UTF-8 symbols in the console
+ * > --nosymbols    Disable UTF-8 symbols in the console
  *
  * > --help, -h      Displays the cli help
  *
