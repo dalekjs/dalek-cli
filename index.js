@@ -90,11 +90,11 @@ module.exports = function () {
           type : 'string',
           desc : 'Log level, controls the amount of information outputted to the console (0 to 5)'
         })
-        .option('no-colors', {
+        .option('nocolors', {
           type : 'boolean',
           desc : 'Disable colorized output in the console'
         })
-        .option('no-symbols', {
+        .option('nosymbols', {
           type : 'boolean',
           desc : 'Disable UTF-8 symbols in the console'
         })
@@ -132,13 +132,14 @@ module.exports = function () {
         reporter: argv.reporter ? argv.reporter.split(',') : [],
         browser: argv.browser ? argv.browser.split(',') : [],
         logLevel: argv.logLevel,
-        noColors: argv['no-colors'],
-        noSymbols: argv['no-symbols']
+        noColors: argv.nocolors,
+        noSymbols: argv.nosymbols
       });
 
       dalek.run();
 
     } else {
+
       // check if the version flag is given, then spit out additional version info
       if (process.argv[2] && (process.argv[2] === '-v' || process.argv[2] === '--version')) {
         var fs = require('fs');
