@@ -131,7 +131,9 @@ module.exports = function () {
         driver: argv.driver ? argv.driver.split(',') : [],
         reporter: argv.reporter ? argv.reporter.split(',') : [],
         browser: argv.browser ? argv.browser.split(',') : [],
-        logLevel: argv.logLevel
+        logLevel: argv.logLevel,
+        noColors: argv['no-colors'],
+        noSymbols: argv['no-symbols']
       });
 
       dalek.run();
