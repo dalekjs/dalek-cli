@@ -58,21 +58,11 @@ var optimist = require('optimist');
 
 module.exports = function () {
 
-  // Search for installed dalek by using node's built-in require() logic.
-  var child = spawn(process.execPath, ['-p', '-e', 'require.resolve("dalekjs")']);
-  var dalekpath = '';
-  child.stdout.on('data', function (data) {
-    dalekpath += data;
-  });
-
-  // when the child process exists, dalek-cli will check
-  // if a local dalekjs installation exists, if so,
-  // it will check the parameters
-  child.on('exit', function(code) {
+  var loadDalek = function (code, path, isCanary) {
     // Removing trailing newline from stdout.
-    dalekpath = dalekpath.trim();
+    path = path.trim();
     // If a local dalek isn't found, throw an error an exit
-    if (code !== 127 && dalekpath) {
+    if (code !== 127 && path) {
       var argv = optimist
         .usage('Usage: dalek [test files] {OPTIONS}')
         .wrap(80)
@@ -117,11 +107,11 @@ module.exports = function () {
           if (argv.version) {
             // load the versions
             var fs = require('fs');
-            var localVersion = JSON.parse(fs.readFileSync(dalekpath.replace('index.js', 'package.json'))).version;
+            var localVersion = JSON.parse(fs.readFileSync(path.replace('index.js', 'package.json'))).version;
             var cliVersion = JSON.parse(fs.readFileSync(__dirname + '/package.json')).version;
 
             console.log('DalekJS CLI Tools Version:', cliVersion);
-            console.log('DalekJS local install:', localVersion);
+            console.log('DalekJS', (isCanary ? 'Canary' : '') ,'local install:', localVersion);
             console.log('Brought to you with love by:', 'Sebastian Golasch (@asciidisco) 2013');
             console.log('');
             throw '';
@@ -135,7 +125,7 @@ module.exports = function () {
         .argv;
 
       // run dalekjs
-      var Dalek = require(dalekpath);
+      var Dalek = require(path);
       var dalek = new Dalek({
         tests: argv._,
         driver: argv.driver ? argv.driver.split(',') : [],
@@ -159,5 +149,32 @@ module.exports = function () {
         process.exit(127);
       }
     }
+  };
+
+  // Search for installed dalek by using node's built-in require() logic.
+  var child = spawn(process.execPath, ['-p', '-e', 'require.resolve("dalekjs")']);
+  var dalekpath = '';
+  child.stdout.on('data', function (data) {
+    dalekpath += data;
+  });
+
+  // when the child process exists, dalek-cli will check
+  // if a local dalekjs installation exists, if so,
+  // it will check the parameters
+  child.on('exit', function(code) {
+    // check for canary
+    if (!dalekpath) {
+      var canaryChild = spawn(process.execPath, ['-p', '-e', 'require.resolve("dalekjs-canary")']);
+      var canarypath = '';
+      canaryChild.stdout.on('data', function (data) {
+        canarypath += data;
+      });
+      canaryChild.on('exit', function(code) {
+        loadDalek(code, canarypath, true);
+      });
+    } else {
+      loadDalek(code, dalekpath, false);
+    }
+
   });
 };
