@@ -131,7 +131,8 @@ module.exports = function(grunt) {
         createTag: true,
         tagName: '%VERSION%',
         tagMessage: '%VERSION%',
-        push: true
+        push: true,
+        pushTo: 'master'
       }
     },
 
