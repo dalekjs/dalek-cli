@@ -4,39 +4,50 @@
   "description": "DalekJS Command line interface",
   "main": "./bin/cmd.js",
   "preferGlobal": true,
-  "bin" : { "dalek" : "./bin/cmd.js" },
+  "bin": {
+    "dalek": "./bin/cmd.js"
+  },
   "directories": {
     "test": "test"
   },
-   "dependencies": {
+  "dependencies": {
     "optimist": "~0.6.0"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-clean": "~0.5.0",
-    "grunt-contrib-jshint": "~0.6.2",
-    "grunt-contrib-yuidoc": "~0.4.0",
+    "grunt-contrib-jshint": "~0.7.0",
+    "grunt-contrib-yuidoc": "~0.5.0",
     "grunt-contrib-compress": "~0.5.2",
-    "grunt-mocha-test": "~0.6.2",
+    "grunt-mocha-test": "~0.7.0",
     "grunt-complexity": "~0.1.3",
     "grunt-plato": "~0.2.1",
-    "grunt-documantix": "~0.0.3",
-    "grunt-include-replace": "~1.1.0",
+    "grunt-git-contributors": "~0.1.4",
+    "grunt-conventional-changelog": "~1.0.0",
+    "grunt-concurrent": "~0.4.1",    
+    "grunt-documantix": "~0.0.4",
+    "grunt-include-replace": "~1.1.1",
     "grunt-bump": "~0.0.11",
     "blanket": "~1.1.5",
-    "chai": "~1.7.2"
+    "chai": "~1.8.1",
+    "load-grunt-tasks": "~0.2.0",
+    "time-grunt": "~0.1.1",    
+    "dalek-build-tools": "~0.0.2"
   },
   "scripts": {
     "test": "grunt test"
   },
   "repository": {
-      "type": "git",
-      "url": "http://github.com/dalekjs/dalek-cli.git"
+    "type": "git",
+    "url": "http://github.com/dalekjs/dalek-cli.git"
   },
   "bugs": {
     "url": "https://github.com/dalekjs/dalek-cli/issues"
   },
-  "keywords": ["dalekjs", "cli"],
+  "keywords": [
+    "dalekjs",
+    "cli"
+  ],
   "author": {
     "name": "Sebastian Golasch",
     "email": "public@asciidisco.com",
