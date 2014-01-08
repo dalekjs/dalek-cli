@@ -43,7 +43,9 @@ var optimist = require('optimist');
  * > --driver, -d    Driver(s) you would like to invoke
  *
  * > --browser, -b   Browser(s) you would like to invoke
- * 
+ *
+ * > --viewport      Viewport dimensions you would like to invoke
+ *
  * > --remote Starts a dalek host server for clients to connect to
  *
  * > --logLevel, -l  Log level, controls the amount of information outputted to the console (0 to 5)
@@ -86,6 +88,10 @@ module.exports = function () {
           alias: 'b',
           type : 'string',
           desc : 'Browser(s) you would like to invoke'
+        })
+        .option('viewport', {
+          type: 'integer',
+          desc: 'Viewport dimensions you would like to invoke'
         })
         .option('logLevel', {
           alias: 'l',
@@ -130,6 +136,14 @@ module.exports = function () {
         })
         .argv;
 
+      // building viewport option
+      if( argv.viewport ) {
+        var viewportDimensions = argv.viewport.split(',');
+        var viewportWidth = +viewportDimensions[0];
+        var viewportHeight = +viewportDimensions[1];
+        var viewportOption = ( isNaN( viewportWidth ) || isNaN( viewportHeight ) ) ? {} : { width: viewportWidth, height: viewportHeight };
+      }
+
       // run dalekjs
       var Dalek = require(path);
       var dalek = new Dalek({
@@ -137,6 +151,7 @@ module.exports = function () {
         driver: argv.driver ? argv.driver.split(',') : [],
         reporter: argv.reporter ? argv.reporter.split(',') : [],
         browser: argv.browser ? argv.browser.split(',') : [],
+        viewport: argv.viewport ? viewportOption : {},
         logLevel: argv.logLevel,
         noColors: argv.nocolors,
         noSymbols: argv.nosymbols,
