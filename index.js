@@ -137,11 +137,12 @@ module.exports = function () {
         .argv;
 
       // building viewport option
+      var viewportDimensions, viewportWidth, viewportHeight, viewportOption;
       if( argv.viewport ) {
-        var viewportDimensions = argv.viewport.split(',');
-        var viewportWidth = +viewportDimensions[0];
-        var viewportHeight = +viewportDimensions[1];
-        var viewportOption = ( isNaN( viewportWidth ) || isNaN( viewportHeight ) ) ? {} : { width: viewportWidth, height: viewportHeight };
+        viewportDimensions = argv.viewport.split(',');
+        viewportWidth = +viewportDimensions[0];
+        viewportHeight = +viewportDimensions[1];
+        viewportOption = ( isNaN( viewportWidth ) || isNaN( viewportHeight ) ) ? {} : { width: viewportWidth, height: viewportHeight };
       }
 
       // run dalekjs
