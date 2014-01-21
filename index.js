@@ -26,6 +26,7 @@
 // ext. libs
 var spawn = require('child_process').spawn;
 var optimist = require('optimist');
+var path = require('path');
 
 /**
  * Dalek Command Line Tools
@@ -62,11 +63,11 @@ var optimist = require('optimist');
 
 module.exports = function () {
 
-  var loadDalek = function (code, path, isCanary) {
+  var loadDalek = function (code, dalekPath, isCanary) {
     // Removing trailing newline from stdout.
-    path = path.trim();
+    dalekPath = dalekPath.trim();
     // If a local dalek isn't found, throw an error an exit
-    if (code !== 127 && path) {
+    if (code !== 127 && dalekPath) {
       var argv = optimist
         .usage('Usage: dalek [test files] {OPTIONS}')
         .wrap(80)
@@ -119,7 +120,7 @@ module.exports = function () {
           if (argv.version) {
             // load the versions
             var fs = require('fs');
-            var localVersion = JSON.parse(fs.readFileSync(path.replace('index.js', 'package.json'))).version;
+            var localVersion = JSON.parse(fs.readFileSync(dalekPath.replace('lib'+path.sep+'dalek.js', 'package.json'))).version;
             var cliVersion = JSON.parse(fs.readFileSync(__dirname + '/package.json')).version;
 
             console.log('DalekJS CLI Tools Version:', cliVersion);
@@ -146,7 +147,7 @@ module.exports = function () {
       }
 
       // run dalekjs
-      var Dalek = require(path);
+      var Dalek = require(dalekPath);
       var dalek = new Dalek({
         tests: argv._,
         driver: argv.driver ? argv.driver.split(',') : [],
