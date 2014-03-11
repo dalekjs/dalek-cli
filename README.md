@@ -10,6 +10,9 @@ dalek-cli
 [![NPM version](https://badge.fury.io/js/dalek-cli.png)](http://badge.fury.io/js/dalek-cli)
 [![Coverage](http://dalekjs.com/package/dalek-cli/master/coverage/coverage.png)](http://dalekjs.com/package/dalek-cli/master/coverage/index.html)
 [![unstable](https://rawgithub.com/hughsk/stability-badges/master/dist/unstable.svg)](http://github.com/hughsk/stability-badges)
+[![Stories in Ready](https://badge.waffle.io/dalekjs/dalek-cli.png?label=ready)](https://waffle.io/dalekjs/dalek-cli)
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/dalekjs/dalek-cli/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
 [![NPM](https://nodei.co/npm/dalek-cli.png)](https://nodei.co/npm/dalek-cli/)
 [![NPM](https://nodei.co/npm-dl/dalek-cli.png)](https://nodei.co/npm/dalek-cli/)
@@ -31,6 +34,12 @@ The command line interface is your interface to the world of DalekJS.
 This is the way to run your tests.
 There might be a web interface to Dalek in the future, but as long as there is not, you have to deal with this;
 But hey, this isn't difficult & I know you can do it!
+
+It can be installed with the following command:
+
+```
+$ npm install -g dalek-cli
+```
 
 Available options:
 
@@ -90,7 +99,3 @@ Google Groups mailing list.
 Copyright (c) 2013 Sebastian Golasch
 
 Distributed under [MIT license](https://github.com/dalekjs/dalek-cli/blob/master/LICENSE-MIT)
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/dalekjs/dalek-cli/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
