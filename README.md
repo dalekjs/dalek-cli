@@ -51,11 +51,15 @@ Available options:
 
   > --browser, -b   Browser(s) you would like to invoke
 
+  > --viewport      Viewport dimensions you would like to invoke
+  
   > --logLevel, -l  Log level, controls the amount of information outputted to the console (0 to 5)
+  
+  > --remote        Starts a dalek host server for clients to connect to
 
-  > --no-colors     Disable colorized output in the console
+  > --nocolors     Disable colorized output in the console
 
-  > --no-symbols    Disable UTF-8 symbols in the console
+  > --nosymbols    Disable UTF-8 symbols in the console
 
   > --help, -h      Displays the cli help
 
