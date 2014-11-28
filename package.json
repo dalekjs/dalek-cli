@@ -1,6 +1,6 @@
 {
   "name": "dalek-cli",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "DalekJS Command line interface",
   "main": "./bin/cmd.js",
   "preferGlobal": true,
