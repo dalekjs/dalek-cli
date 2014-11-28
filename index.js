@@ -94,6 +94,11 @@ module.exports = function () {
           type: 'integer',
           desc: 'Viewport dimensions you would like to invoke'
         })
+        .option('baseUrl', {
+          alias: 'u',
+          type : 'string',
+          desc : 'Base URL to append all .open()\'s with if relative path is given'
+        })
         .option('logLevel', {
           alias: 'l',
           type : 'string',
@@ -155,6 +160,7 @@ module.exports = function () {
         browser: argv.browser ? argv.browser.split(',') : [],
         viewport: argv.viewport ? viewportOption : {},
         logLevel: argv.logLevel,
+        baseUrl: argv.baseUrl,
         noColors: argv.nocolors,
         noSymbols: argv.nosymbols,
         remote: argv.remote
